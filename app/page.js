@@ -1,6 +1,5 @@
 'use client'
 import { useState } from "react";
-import Image from "next/image";
 
 export default function Home() {
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
@@ -36,7 +35,7 @@ export default function Home() {
           </p>
           <div className="flex gap-4">
             <input type="text" className="w-1/3 focus:outline-green-400 border-2 border-black p-2" placeholder="bittr.ee/username" />
-            <button className="bg-black text-white p-2 rounded-lg hover:cursor-pointer transform transition-transform duration-200 hover:scale-105 font-bold">
+            <button className="bg-pink-400 text-white p-2 rounded-lg hover:cursor-pointer transform transition-transform duration-200 hover:scale-105 font-bold">
               Claim Now
             </button>
           </div>
