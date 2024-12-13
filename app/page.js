@@ -1,8 +1,10 @@
 'use client'
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function Home() {
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
+  const router = useRouter();
 
   const handleMouseMove = (event) => {
     const { clientX, clientY, currentTarget } = event;
@@ -20,6 +22,15 @@ export default function Home() {
     setRotation({ x: rotationX, y: rotationY });
   };
 
+  const [paramsText, setparamsText] = useState('bitr.ee/')
+
+  const createTree = async () => {
+    let updatedParamsText = paramsText;
+    if (paramsText.startsWith('bitr.ee/')) {
+      updatedParamsText = paramsText.split('/')[1]
+    }
+    router.push(`/generate?handle=${updatedParamsText}`)
+  }
 
   return (
     <main>
@@ -34,8 +45,8 @@ export default function Home() {
             Join 50M+ people using Linktree for their link in bio. One link to help you share everything you create, curate and sell from your Instagram, TikTok, Twitter, YouTube and other social media profiles.
           </p>
           <div className="flex gap-4">
-            <input type="text" className="w-1/3 focus:outline-green-400 border-2 border-black p-2" placeholder="bittr.ee/username" />
-            <button className="bg-pink-400 text-white p-2 rounded-lg hover:cursor-pointer transform transition-transform duration-200 hover:scale-105 font-bold">
+            <input value={paramsText} onChange={(e) => setparamsText(e.target.value)} type="text" className="w-1/3 focus:outline-green-400 border-2 border-black p-2" />
+            <button onClick={() => createTree()} className="bg-pink-400 text-white p-2 rounded-lg hover:cursor-pointer transform transition-transform duration-200 hover:scale-105 font-bold">
               Claim Now
             </button>
           </div>

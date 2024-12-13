@@ -2,6 +2,9 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 
+// showing navbar to only specific pages 
+let showNavbar = false; if (typeof window !== "undefined") { showNavbar = ["/", "/generate?"].includes(window.location.pathname); }
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -22,9 +25,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
       >
-        <Navbar/>
+        <Navbar />
         {children}
       </body>
     </html>

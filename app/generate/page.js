@@ -1,17 +1,17 @@
 'use client'
+import { useSearchParams } from 'next/navigation';
 import React, { useState } from 'react'
 import { ToastContainer, toast, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const page = () => {
 
-    // const [link, setlink] = useState("")
-    // const [linktext, setlinktext] = useState("")
-
+    const searchParams = useSearchParams();
     const [links, setLinks] = useState([{ linktext: "", link: "" }]);
 
-    const [handle, sethandle] = useState("")
+    const [handle, sethandle] = useState(searchParams.get('handle') || "")
     const [imageLink, setimageLink] = useState("")
+    const [description, setdescription] = useState("")
 
     const handleChange = (index, linktext, link) => {
         setLinks((initialLinks) => {
@@ -33,7 +33,7 @@ const page = () => {
     const createTree = async () => {
         const response = await fetch("http://localhost:3000/api/add", {
             method: "POST",
-            body: JSON.stringify({ handle, links, imageLink }),
+            body: JSON.stringify({ handle, links, imageLink, description }),
         });
         const res = await response.json()
         if (res.success) {
@@ -118,6 +118,13 @@ const page = () => {
                             <h2 className='font-semibold text-2xl text-white'>Step 3: Add Picture and finalize</h2>
                             <div className='mx-4 flex flex-col justify-center'>
                                 <input value={imageLink || ""} onChange={e => { setimageLink(e.target.value) }} className='px-4 py-2 mr-2 my-2 focus:outline-green-500 rounded-full' type="text" placeholder='Enter link to your picture' />
+                                <textarea
+                                    value={description || ""}
+                                    onChange={e => { setdescription(e.target.value) }}
+                                    className="px-4 py-2 mr-2 my-2 focus:outline-green-500 rounded-xl"
+                                    placeholder="Enter your BiTree description"
+                                    rows="4"
+                                ></textarea>
                                 <div className='flex items-center justify-center'>
                                     <button disabled={handle == "" || imageLink == "" || links[0].linktext == "" || links[0].link == ""} onClick={() => createTree()} className="disabled:bg-slate-500 disabled:transition-none disabled:transform-none py-2 px-5 bg-slate-900 text-white font-bold rounded-3xl transform transition-transform duration-300 hover:scale-105">
                                         {handle == "" || imageLink == "" || links[0].linktext == "" || links[0].link == "" ? "Fill all blocks" : "Create Your BiTree"}

@@ -1,7 +1,13 @@
 import Link from 'next/link'
 import React from 'react'
 
+// Isko sahi krna hai 
+import router from 'next/navigation';
+
 const Navbar = () => {
+    const router = router();
+    const pathname = router.pathname;
+    console.log(pathname)
     return (
         <nav className='bg-white w-[80vw] flex justify-between fixed top-10 right-[10vw] rounded-full px-7 py-5 z-10'>
             <div className='logo flex items-center gap-20'>

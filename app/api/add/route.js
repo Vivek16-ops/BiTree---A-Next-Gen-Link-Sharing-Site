@@ -10,8 +10,7 @@ export async function POST(request) {
         const collection = db.collection('links');
 
         // if the handle is already claimed then, you cannot create youur bittree 
-        const doc = collection.findOne({ handle: body.handle })
-
+        const doc = await collection.findOne({ handle: body.handle })
         if (doc) {
             return Response.json({ success: false, message: "This BiTree is already exists! Try Choosing different handle" });
         }
