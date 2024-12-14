@@ -2,9 +2,6 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 
-// showing navbar to only specific pages 
-let showNavbar = false; if (typeof window !== "undefined") { showNavbar = ["/", "/generate?"].includes(window.location.pathname); }
-
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",

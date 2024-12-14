@@ -126,8 +126,8 @@ const page = () => {
                                     rows="4"
                                 ></textarea>
                                 <div className='flex items-center justify-center'>
-                                    <button disabled={handle == "" || imageLink == "" || links[0].linktext == "" || links[0].link == ""} onClick={() => createTree()} className="disabled:bg-slate-500 disabled:transition-none disabled:transform-none py-2 px-5 bg-slate-900 text-white font-bold rounded-3xl transform transition-transform duration-300 hover:scale-105">
-                                        {handle == "" || imageLink == "" || links[0].linktext == "" || links[0].link == "" ? "Fill all blocks" : "Create Your BiTree"}
+                                    <button disabled={handle == "" || imageLink == "" || links[0].linktext == "" || links[0].link == "" || description == ""} onClick={() => createTree()} className="disabled:bg-slate-500 disabled:transition-none disabled:transform-none py-2 px-5 bg-slate-900 text-white font-bold rounded-3xl transform transition-transform duration-300 hover:scale-105">
+                                        {handle == "" || imageLink == "" || links[0].linktext == "" || links[0].link == "" || description == "" ? "Fill all blocks" : "Create Your BiTree"}
                                     </button>
                                 </div>
                             </div>

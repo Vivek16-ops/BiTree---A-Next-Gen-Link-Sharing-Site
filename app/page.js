@@ -32,9 +32,17 @@ export default function Home() {
     router.push(`/generate?handle=${updatedParamsText}`)
   }
 
+  const [treeDomain, setTreeDomain] = useState('')
+
+  // Function to send the user to their respective tree 
+  const getTreeDomain = async () => {
+    router.push(`/${treeDomain}`)
+  }
+
   return (
     <main>
       <section className="bg-green-400 min-h-[100vh] grid grid-cols-2">
+        {/* Descriptions and Inputs Tags Section  */}
         <div className="flex justify-center flex-col ml-[10vw]">
           <p className="text-yellow-300 font-bold text-7xl">
             Everything you
@@ -48,6 +56,12 @@ export default function Home() {
             <input value={paramsText} onChange={(e) => setparamsText(e.target.value)} type="text" className="w-1/3 focus:outline-green-400 border-2 border-black p-2" />
             <button onClick={() => createTree()} className="bg-pink-400 text-white p-2 rounded-lg hover:cursor-pointer transform transition-transform duration-200 hover:scale-105 font-bold">
               Claim Now
+            </button>
+          </div>
+          <div className="flex gap-4 my-4">
+            <input value={treeDomain} placeholder="Enter your tree handle" onChange={(e) => setTreeDomain(e.target.value)} type="text" className="w-1/3 focus:outline-green-400 border-2 border-black p-2" />
+            <button onClick={() => getTreeDomain()} className="bg-purple-500 text-white p-2 rounded-lg hover:cursor-pointer transform transition-transform duration-200 hover:scale-105 font-bold">
+              View your tree
             </button>
           </div>
         </div>
@@ -89,7 +103,7 @@ export default function Home() {
         </div>
       </section>
       <section className="bg-red-700 min-h-[100vh]">
-
+        <h1 className="text-white font-bold text-7xl">Todo Add Some Styling Here Using AI In Some Leisure Time</h1>
       </section>
     </main>
   );
